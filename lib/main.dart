@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'dice_roller.dart';
 
 void main() => runApp(MyApp());
@@ -28,10 +29,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   DiceRoller roller = new DiceRoller();
+  int currentDie = 4;
   int result = 0;
 
   void rollDice(int size) {
     setState(() {
+      currentDie = size;
       result = roller.roll(size);
     });
   }
@@ -46,17 +49,23 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+            Stack(
+              alignment: Alignment.center,
               children: <Widget>[
+                Container(
+                  child: Image(
+                    image: AssetImage('lib/assets/d$currentDie.png'),
+                    width: 256,
+                    height: 256,
+                  ),
+                ),
                 Text(
-                  result.toString(),
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 56.0,
-                  )
+                    result.toString(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 56.0,
+                    )
                 ),
               ],
             ),
@@ -67,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     FlatButton(
                         onPressed: () { rollDice(4); },
-                        color: Colors.blue,
+                        color: Colors.yellow,
                         child: Text('d4')
                     ),
                     FlatButton(
@@ -82,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     FlatButton(
                         onPressed: () { rollDice(10); },
-                        color: Colors.purple,
+                        color: Colors.blue,
                         child: Text('d10')
                     ),
                   ],
@@ -97,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     FlatButton(
                         onPressed: () { rollDice(20); },
-                        color: Colors.yellow,
+                        color: Colors.purple,
                         child: Text('d20')
                     ),
                     FlatButton(
