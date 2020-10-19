@@ -9,3 +9,4 @@ packages
 pubspec.lock
 .flutter-plugins
 .idea
+.dart_tool
