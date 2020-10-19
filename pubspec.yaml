@@ -43,6 +43,12 @@ flutter:
 
   assets:
     - lib/assets/d4.png
+    - lib/assets/d6.png
+    - lib/assets/d8.png
+    - lib/assets/d10.png
+    - lib/assets/d12.png
+    - lib/assets/d20.png
+    - lib/assets/d100.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

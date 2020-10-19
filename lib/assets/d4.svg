@@ -8,8 +8,8 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="512"
-   height="444.88919"
-   viewBox="0 0 135.46667 117.71027"
+   height="548"
+   viewBox="0 0 135.46667 144.99167"
    version="1.1"
    id="svg8"
    sodipodi:docname="d4.svg"
@@ -34,11 +34,11 @@
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
-     inkscape:window-width="1597"
-     inkscape:window-height="1117"
-     inkscape:window-x="904"
-     inkscape:window-y="761"
-     inkscape:window-maximized="0"
+     inkscape:window-width="3840"
+     inkscape:window-height="2097"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -61,20 +61,10 @@
      id="layer1"
      transform="translate(3.9833789e-6,-16.933334)">
     <path
-       sodipodi:type="star"
-       style="fill:#ffeb3b;fill-opacity:1;stroke:none;stroke-width:6.20861;stroke-miterlimit:4;stroke-dasharray:none"
        id="path845"
-       sodipodi:sides="3"
-       sodipodi:cx="67.73333"
-       sodipodi:cy="95.14505"
-       sodipodi:r1="78.211716"
-       sodipodi:r2="39.105858"
-       sodipodi:arg1="0.52359878"
-       sodipodi:arg2="1.5707963"
-       inkscape:flatsided="false"
-       inkscape:rounded="0"
-       inkscape:randomized="0"
-       d="m 135.46666,134.25091 -67.733329,0 -67.733334067427,0 L 33.866663,75.592122 67.73333,16.933334 101.6,75.59212 Z"
-       inkscape:transform-center-y="-19.552928" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:3.16345;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:transform-center-x="-1.3770176e-06"
+       inkscape:transform-center-y="-18.762064"
+       d="M 132.72703,132.66918 H 67.73333 2.7396257 L 35.236476,76.382982 67.73333,20.096786 100.23018,76.382979 Z" />
   </g>
 </svg>

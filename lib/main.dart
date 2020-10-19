@@ -30,11 +30,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   DiceRoller roller = new DiceRoller();
   int currentDie = 4;
+  Color currentColor = Colors.white;
   int result = 0;
 
-  void rollDice(int size) {
+  void rollDice(int size, Color color) {
     setState(() {
       currentDie = size;
+      currentColor = color;
       result = roller.roll(size);
     });
   }
@@ -55,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Container(
                   child: Image(
                     image: AssetImage('lib/assets/d$currentDie.png'),
+                    color: currentColor,
                     width: 256,
                     height: 256,
                   ),
@@ -75,22 +78,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     FlatButton(
-                        onPressed: () { rollDice(4); },
+                        onPressed: () { rollDice(4, Colors.yellow); },
                         color: Colors.yellow,
                         child: Text('d4')
                     ),
                     FlatButton(
-                        onPressed: () { rollDice(6); },
+                        onPressed: () { rollDice(6, Colors.red); },
                         color: Colors.red,
                         child: Text('d6')
                     ),
                     FlatButton(
-                        onPressed: () { rollDice(8); },
+                        onPressed: () { rollDice(8, Colors.orange); },
                         color: Colors.orange,
                         child: Text('d8')
                     ),
                     FlatButton(
-                        onPressed: () { rollDice(10); },
+                        onPressed: () { rollDice(10, Colors.blue); },
                         color: Colors.blue,
                         child: Text('d10')
                     ),
@@ -100,17 +103,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     FlatButton(
-                        onPressed: () { rollDice(12); },
+                        onPressed: () { rollDice(12, Colors.green); },
                         color: Colors.green,
                         child: Text('d12')
                     ),
                     FlatButton(
-                        onPressed: () { rollDice(20); },
+                        onPressed: () { rollDice(20, Colors.purple); },
                         color: Colors.purple,
                         child: Text('d20')
                     ),
                     FlatButton(
-                        onPressed: () { rollDice(100); },
+                        onPressed: () { rollDice(100, Colors.grey); },
                         color: Colors.grey,
                         child: Text('d100')
                     ),
