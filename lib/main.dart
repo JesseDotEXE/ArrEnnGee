@@ -34,6 +34,7 @@ class _ArrEnnGeeState extends State<ArrEnnGee> {
   int currentDie;
   Color currentColor;
   int gridColumns;
+  bool keyHack = false;
 
   @override
   void initState() {
@@ -43,6 +44,7 @@ class _ArrEnnGeeState extends State<ArrEnnGee> {
     currentDie = 4;
     currentColor = Colors.white;
     gridColumns = 1;
+    keyHack = false;
   }
 
   void rollDice(int sides, Color color) {
@@ -51,12 +53,11 @@ class _ArrEnnGeeState extends State<ArrEnnGee> {
       currentColor = color;
 
       if (this.rollHistory.length >= 12) {
-        print('Clearing History');
+        this.keyHack = !this.keyHack;
         this.rollHistory.clear();
       }
 
       Roll newRoll = new Roll(sides: sides.toString(), result:  (Random().nextInt(sides) + 1).toString(), color: color);
-      print('newRoll - sides: ' + newRoll.sides + ' result: ' + newRoll.result);
       this.rollHistory.add(newRoll);
 
       if (this.rollHistory.length > 1) {
@@ -85,7 +86,8 @@ class _ArrEnnGeeState extends State<ArrEnnGee> {
           children: <Widget> [
             Expanded(
               child: GridView.count(
-                padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+                key: Key(this.keyHack.toString()), // List.clear() doesn't seem to trigger the re-render so I had to make a little hack that would for a re-draw of the whole list.
+                padding: EdgeInsets.all(10.0),
                 mainAxisSpacing: 15,
                 crossAxisSpacing: 15,
                 crossAxisCount: this.gridColumns,
