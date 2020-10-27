@@ -1,10 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'dice_roller.dart';
+import 'dart:math';
 
-void main() => runApp(MyApp());
+import 'roll.dart';
 
-class MyApp extends StatelessWidget {
+void main() => runApp(ArrEnnGeeApp());
+
+class ArrEnnGeeApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -13,31 +15,61 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: ArrEnnGee(title: 'Arr Enn Gee'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class ArrEnnGee extends StatefulWidget {
+  ArrEnnGee({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _ArrEnnGeeState createState() => _ArrEnnGeeState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  DiceRoller roller = new DiceRoller();
-  int currentDie = 4;
-  Color currentColor = Colors.white;
-  int result = 0;
+class _ArrEnnGeeState extends State<ArrEnnGee> {
+  List<Roll> rollHistory = [];
+  int currentDie;
+  Color currentColor;
+  int gridColumns;
 
-  void rollDice(int size, Color color) {
+  @override
+  void initState() {
+    super.initState();
+
+    rollHistory = [];
+    currentDie = 4;
+    currentColor = Colors.white;
+    gridColumns = 1;
+  }
+
+  void rollDice(int sides, Color color) {
     setState(() {
-      currentDie = size;
+      currentDie = sides;
       currentColor = color;
-      result = roller.roll(size);
+
+      if (this.rollHistory.length >= 12) {
+        print('Clearing History');
+        this.rollHistory.clear();
+      }
+
+      Roll newRoll = new Roll(sides: sides.toString(), result:  (Random().nextInt(sides) + 1).toString(), color: color);
+      print('newRoll - sides: ' + newRoll.sides + ' result: ' + newRoll.result);
+      this.rollHistory.add(newRoll);
+
+      if (this.rollHistory.length > 1) {
+        this.gridColumns = (this.rollHistory.length / 6).ceil() + 1;
+      } else {
+        this.gridColumns = 1;
+      }
+    });
+  }
+
+  void clearHistory() {
+    setState(() {
+      this.rollHistory.clear();
     });
   }
 
@@ -50,27 +82,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Stack(
-              alignment: Alignment.center,
-              children: <Widget>[
-                Container(
-                  child: Image(
-                    image: AssetImage('lib/assets/d$currentDie.png'),
-                    color: currentColor,
-                    width: 256,
-                    height: 256,
-                  ),
-                ),
-                Text(
-                    result.toString(),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 56.0,
-                    )
-                ),
-              ],
+          children: <Widget> [
+            Expanded(
+              child: GridView.count(
+                padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+                mainAxisSpacing: 15,
+                crossAxisSpacing: 15,
+                crossAxisCount: this.gridColumns,
+                children:  this.rollHistory.toList()
+              ),
             ),
             Column(
               children: <Widget>[
@@ -113,9 +133,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text('d20')
                     ),
                     FlatButton(
-                        onPressed: () { rollDice(100, Colors.grey); },
-                        color: Colors.grey,
+                        onPressed: () { rollDice(100, Colors.blueGrey); },
+                        color: Colors.blueGrey,
                         child: Text('d100')
+                    ),
+                    FlatButton(
+                        onPressed: () { clearHistory(); },
+                        color: Colors.grey,
+                        child: Text('Clear')
                     ),
                   ],
                 ),
