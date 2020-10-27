@@ -80,6 +80,7 @@ class _ArrEnnGeeState extends State<ArrEnnGee> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      backgroundColor: Colors.grey[400],
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -141,7 +142,7 @@ class _ArrEnnGeeState extends State<ArrEnnGee> {
                     ),
                     FlatButton(
                         onPressed: () { clearHistory(); },
-                        color: Colors.grey,
+                        color: Colors.brown,
                         child: Text('Clear')
                     ),
                   ],
